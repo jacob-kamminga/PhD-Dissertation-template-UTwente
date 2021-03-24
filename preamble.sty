@@ -1,0 +1,191 @@
+%!TEX root = ../main.tex
+\ProvidesPackage{preamble}
+
+%% Enable subsubsection counter
+% \setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\usepackage{amsmath}    % need for subequations
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\usepackage{graphicx}   % need for figures
+\usepackage{epsfig} % figure
+\usepackage{amssymb} % http://ctan.org/pkg/amssymb
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating} % ROtating text
+\usepackage{pdfpages}
+
+%% Landscape pages with decent float handling
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{flafter}
+\usepackage{fancyhdr}
+\fancypagestyle{lscape}{% 
+\fancyhf{} % clear all header and footer fields 
+\fancyfoot[LE]{}
+\fancyfoot[LO] {}
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt}}
+%%
+
+\usepackage{mathtools}
+\usepackage{ulem} %fors strikethrough
+
+\usepackage[nottoc]{tocbibind} % To show bibliography in TOC
+\usepackage[sort&compress]{natbib}
+% \bibliographystyle{unsrt}
+\RequirePackage{doi}
+\usepackage{hyperref}
+\usepackage{bibentry} % Used for full bibliography prints
+\nobibliography* % Used for full bibliography prints
+
+
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\usepackage{subfigure}
+\usepackage{booktabs}
+
+\usepackage{array}
+\renewcommand{\arraystretch}{1.5}
+
+
+\usepackage{epstopdf}
+\usepackage{placeins}
+\usepackage[colorinlistoftodos,prependcaption,textsize=scriptsize]{todonotes} % [disable] : to disable notes without deleting them manually
+\setlength{\marginparwidth}{2cm}
+\usepackage[inline,shortlabels]{enumitem}
+
+\usepackage[acronym,toc]{glossaries}
+\glsdisablehyper
+\ifdraft
+    % do nothing
+\else
+    \makeglossaries % generate acronyms list (create makeindex files)
+\fi
+\ifreview
+    \geometry{a4paper, portrait, margin=1.5in}
+    \usepackage[modulo]{lineno} % Used for line numbering
+    \linenumbers
+    \usepackage{setspace} % Used for double line spacing
+    % \doublehalfspacing
+    \setstretch{2}
+\fi
+
+ 
+\include{acronyms}
+\usepackage{siunitx} %for correct unit spacing
+\usepackage[super]{nth}
+\usepackage{gensymb} % Used for \degree
+\usepackage{xcolor} % color text
+\usepackage{colortbl}
+\usepackage{import} % for relative paths within included files
+\usepackage{wallpaper} % for background images
+
+
+% \linespread{1.3} % Adjust line spacing
+
+\newcommand{\FigureWidth}{\linewidth}
+\newcommand{\TableWidth}{\linewidth}
+
+%% Custom commands
+\newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}}
+\newcommand{\equationname}{Equation}
+\newcommand{\sectionname}{Section}
+\newcommand{\rqname}{RQ}
+\newcommand{\hypname}{Hypothesis}
+
+%% Make inline Associate Editor or reviewers' comments optional
+\newcommand{\aecomment}[1]{
+\ifaec
+    \todo[inline]{\gls{aed} #1}
+\fi
+}
+
+%% Figure title
+\newcommand*{\figuretitle}[1]{%
+    {\centering%   <--------  will only affect the title because of the grouping (by the
+    \textbf{#1}%              braces before \centering and behind \medskip). If you remove
+    \par\medskip}%            these braces the whole body of a {figure} env will be centered.
+}
+
+% Display a glossaries acronym as a legenda entry
+% \newcommand{\acrlegenda}[1]{
+%     \glsentryshort{#1}: \glsentryfull{#1}
+% }
+% Display a glossaries acronym as a legenda entry (accepts a commas separated list of acronyms)
+\newcommand{\acrlegenda}[2][$, \;$]{%  %[$\;\triangleright\;$]{%
+  \def\nextitem{\def\nextitem{#1}}% Separator
+  \renewcommand*{\do}[1]{\nextitem\textbf{\glsentryshort{##1}}: \glsentrylong{##1}}% How to process each item
+  \docsvlist{#2}% Process list
+}
+
+
+%% Research Question Environment
+%Numbered environment
+\newcounter{rq}[section]
+\newenvironment{ResearchQuestion}[1][]
+{
+\refstepcounter{rq} \par\medskip
+\noindent \textbf{\rqname~\therq: #1} \itshape \rmfamily  
+}{\medskip}
+
+%% Hypothesis Environment
+%Numbered environment
+\newcounter{hyp}[section]
+\newenvironment{hypothesis}[1][]
+{
+\refstepcounter{hyp} \par\medskip
+\noindent \textbf{\hypname~\thehyp: #1} \itshape \rmfamily  
+}{\medskip}
+
+%% Contribution Environment
+%Numbered environment
+\newcounter{con}[section]
+\newenvironment{contribution}[1][]
+{
+\refstepcounter{con} \par\medskip 
+\noindent {\textbf{\headerstyle Contribution~\thecon: #1}} %\rmfamily
+}{\medskip}
+
+%% Contribution naming
+\newcommand{\contributionname}{Contribution}
+
+%% Custom box, (used for confiusion matrix schematic)
+\newcommand\MyBox[2]{
+  \fbox{\lower0.75cm
+    \vbox to 1.7cm{\vfil
+      \hbox to 1.7cm{\hfil\parbox{1.4cm}{\centering#1\\#2}\hfil}
+      \vfil}%
+  }%
+}
+
+
+
+% \pagecolor[rgb]{0.2,0.2,0.2}
+% \color[rgb]{1,1,1}
+
+%% Always vertically center landscape pages
+% \let\oldlandscape\landscape
+% \let\oldendlandscape\endlandscape
+% \def\landscape{\begingroup \oldlandscape \vspace*{\fill}}
+% \def\endlandscape{\vspace*{\fill} \oldendlandscape \endgroup}
+
+%% Add lines to quote environment (used as chapter abstract)
+\let\oldquote\quote
+\let\oldendquote\endquote
+\def\quote{\begingroup \oldquote \noindent\hfil\rule{\linewidth}{.4pt}\hfil} 
+\def\endquote{\noindent\hfil\rule{\linewidth}{.4pt}\hfil \oldendquote \endgroup}
+
+\newif\ifchapone
+\newif\ifchaptwo
+\newif\ifchapthree
+\newif\ifchapfour
+\newif\ifchapfive
+\newif\ifchapsix
+\newif\ifchapseven
+\newif\ifchapeight
+

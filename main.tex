@@ -1,0 +1,133 @@
+%% Options
+% [cover]           : Include graphical cover (first and last page of pdf)
+% [drafts]          : Speed up compilation (some elements not compiled)
+% [review]          : Compile a review output in A4 format, double spaced, with numbering.
+% [reviewcomments]  : Include reviewers' comments inline
+
+% \documentclass[]{dissertation}
+\documentclass[cover]{dissertation}
+% \documentclass[review]{dissertation}
+% \documentclass[print]{dissertation}
+% \documentclass[drafts]{dissertation}
+% \documentclass[drafts,review]{dissertation}
+% \documentclass[drafts,reviewcomments]{dissertation}
+
+\usepackage{preamble} % To adjust preamble, edit preamble.sty
+
+\begin{document}
+\sloppy
+%% Author
+\def \myAuthorName{John Doe}
+%% Title
+\def \myTitle{Your Title}
+% \def \myTitle{From Neuron to Neuron}
+% \def \mySubTitle{Supporting Poacher Detection through Deep Animal Activity Recognition}
+% \def \mySubTitle{Discovering Animal Behavior Through Robust Animal Activity Recognition}
+\def \mySubTitle{Optional subtitle}
+
+
+
+%% Edit the text of the titlepages in front_matter/titlepages.tex
+
+
+%% Define main research question
+\newcommand{\mainrq}{
+\medskip
+\textit{
+How do you define a good research question? 
+}
+\medskip
+}
+
+\ifdraft
+    % do nothing
+\else
+%% Front matter
+    \import{./front_matter/}{front_matter.tex}
+\fi
+
+\tableofcontents
+\ifdraft
+    \blfootnote{DRAFT printed: \today}
+\fi
+
+\mainmatter
+%% Turn on thumb indices.
+\thumbtrue
+
+%% Choose which chapters to compile (comment out means: do not compile)
+% TIP, when running into compilation problems due to server time out, first comment out half of your chapters -> compile -> comment out all chapters -> compile.
+\chaponetrue
+\chaptwotrue
+% \chapthreetrue
+% \chapfourtrue
+% \chapfivetrue
+% \chapsixtrue
+% \chapseventrue
+\chapeighttrue
+
+
+\ifchapone
+    \import{./chapters/introduction/}{chapter_main}
+\else
+    \chapter{Introduction} %<--- Optionally add section headers here manually for readability when printing draft
+    \label{chapter:introduction}
+\fi
+
+\ifchaptwo
+    \import{./chapters/state_of_the_art/}{chapter_main}
+\else
+    \chapter{Animal Activity Recognition -- the State of the Art} %<--- Optionally add section headers here manually for readability when printing draft
+    \label{chapter:state_of_the_art}
+\fi
+
+\ifchapthree
+    \import{./chapters/datasets/}{chapter_main}
+\else
+    \chapter{Manual chapter 3 title for draft print (not including contents of this chapter)}
+    \label{chapter:your_chapter_title_when_not_included}
+\fi
+
+% \ifchapfour
+%     \import{./chapters/your_chapter_folder/}{chapter_main}
+% \else
+%     \chapter{your_chapter_title_when_not_included}
+%     \label{chapter:your_chapter_title_when_not_included}
+% \fi
+
+% \ifchapfive
+%     \import{./chapters/your_chapter_folder/}{chapter_main}
+% \else
+%     \chapter{your_chapter_title_when_not_included}
+%     \label{chapter:your_chapter_title_when_not_included}
+% \fi
+
+% \ifchapsix
+%     \import{./chapters/your_chapter_folder/}{chapter_main}
+% \else
+%     \chapter{your_chapter_title_when_not_included}
+%     \label{chapter:your_chapter_title_when_not_included}
+% \fi
+
+% \ifchapseven
+%     \import{./chapters/your_chapter_folder/}{chapter_main}
+% \else
+%     \chapter{your_chapter_title_when_not_included}
+%     \label{chapter:your_chapter_title_when_not_included}
+% \fi
+
+\ifchapeight
+    \import{./chapters/conclusions_future_work/}{chapter_main}
+\else
+    \chapter{Conclusions and Future Work}
+    \label{chapter:conclusions}
+\fi
+ 
+
+%% Turn off thumb indices for unnumbered chapters.
+\thumbfalse
+\FloatBarrier
+
+\import{./end_matter/}{end_matter.tex}
+
+\end{document}

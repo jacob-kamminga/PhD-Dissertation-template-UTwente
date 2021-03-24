@@ -1,0 +1,26 @@
+\frontmatter
+
+%% background image
+% \ThisLLCornerWallPaper{1}{figures/impala_art_no_border}
+
+\subimport{./}{titlepages}
+
+\chapter*{}
+%% The (optional) dedication can be used to thank someone or display a significant quotation.
+\ThisLRCornerWallPaper{.3}{figures/bp_silhouette}
+\dedication{\epigraph{
+No one can pass through life, any more than he can pass \\ 
+through a bit of country, without leaving tracks behind,\\
+and those tracks may often be helpful to those coming \\
+after him in finding their way.
+}{Robert Baden-Powell}}
+
+% \clearpage
+
+\pagenumbering{roman} % Roman numbering for the front matter
+\setcounter{page}{7}
+
+\subimport{./}{abstract}
+\glsresetall
+\subimport{./}{samenvatting}
+\subimport{./}{acknowledgements_dankwoord}

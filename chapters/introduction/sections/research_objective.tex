@@ -1,0 +1,110 @@
+\section{Research Objectives, Questions, and Hypotheses}
+\label{sec:intro_research_objective}
+
+Our main research objective is accurate, resource-efficient, and robust \gls{aar} using small and lightweight \glspl{imu}.
+In this dissertation, we aim to answer the following main research question:
+
+\mainrq
+
+In the following, we break down the main research question and pose several more detailed sub-questions.
+In \sectionname~\ref{challenges:data} we discussed the data acquisition challenge.
+Obtaining labeled motion data from a large number of animals is a tedious and challenging task.
+To address the difficulty in the acquisition and labeling of animal motion data, we ask the following research question:
+
+\begin{ResearchQuestion}
+\label{rq:labeling}
+What is an efficient method in terms of time and effort to acquire and annotate sufficient sensor data from a group of animals?
+\end{ResearchQuestion}
+
+% To answer \rqname~\ref{rq:labeling} we propose:
+To answer this question we propose the following hypothesis:
+
+\begin{hypothesis}
+\label{hyp:labeling}
+    Synchronizing motion data with ground-truth video, through \gls{rtc} timestamps, enables the recording of multiple subjects simultaneously and simplifies the annotation process. 
+\end{hypothesis}
+
+
+
+We discussed the challenge of heterogeneity of animals in \sectionname~\ref{challenges:animals}.
+Our objective is to enable \gls{aar} for a wide variety of animals: small and big, young and old.
+Moreover, our objective is to support \gls{aar} that is easily deployed across a variety of species.
+Together, the heterogeneity in animals, and the challenge of acquiring labeled data, motivate the exploration of generic \gls{aar}. 
+To support \gls{aar} that does not only generalize to multiple individuals but also multiple species, we pose the following research question:
+
+\begin{ResearchQuestion}
+\label{rq:generic}
+    To what extent can the genericity performance of an \gls{aar} classifier for a group of animals be improved?
+    
+\end{ResearchQuestion}
+
+To answer this question we propose the following hypothesis:
+
+\begin{hypothesis}
+\label{hyp:generic}
+    If animal-subjects, the sensor location and type, and the learning-task are similar, an \gls{aar} classifier can be trained using \gls{mtl} to improve the genericity performance of the classifier significantly.
+\end{hypothesis}
+
+
+In \sectionname~\ref{challenges:sensor_orientation}, we discussed the challenge of collars that rotate over time around the neck of animals.
+Our objective is to investigate \gls{aar} that is invariant to the position and orientation of the sensor.
+Simultaneously, we discussed the challenge of resource constraints in \sectionname~\ref{challenges:resource}.
+To address \gls{aar} that is both robust against the sensor position and orientation, and resource-efficient, we pose the following research question:
+
+ \begin{ResearchQuestion}
+\label{rq:orientation}
+     Which method yields \gls{aar} that is both robust against the sensor-orientation and resource-efficient?
+\end{ResearchQuestion}
+
+To answer this question we propose the following hypothesis:
+
+\begin{hypothesis}
+\label{hyp:orientation}
+    Using motion data collected from multiple sensor positions and orientations, a combination of filter and wrapper methods can select a small and resource-efficient feature-subset that is orientation-independent.
+\end{hypothesis}
+
+In \sectionname~\ref{challenges:classifiers}, we discussed the challenge of heterogeneity of \gls{ml} algorithms for \gls{aar} classification.
+Furthermore, we discussed the challenge of tuning hyperparameters and the influence of the validation-data partitioning method (dividing the dataset into training and testing datasets).
+At the same time, we discussed the challenge of feature types in \sectionname~\ref{challenges:features}.
+To investigate and explain the impact of these factors on the performance, we pose the following question:
+
+\begin{ResearchQuestion}
+\label{rq:aar_analysis}
+  To what extent do the validation-data partitioning method, hyperparameter tuning, and the feature-type affect the performance of orientation-independent \gls{aar} classifiers?
+   
+    
+\end{ResearchQuestion}
+
+To answer this question we propose the following hypothesis:
+
+\begin{hypothesis}
+\label{hyp:aar_analysis}
+    The data partitioning method, hyperparameter tuning, and the feature-type have a significant effect on the performance of orientation-independent \gls{aar} classifiers.
+\end{hypothesis}
+
+In \sectionname~\ref{challenges:data}, we discussed that collecting a sufficient amount of labeled motion data is a daunting task. However, it is relatively easy to obtain vast amounts of unlabeled motion data.
+Therefore, we pose the following research question:
+
+\begin{ResearchQuestion}
+\label{rq:deep_unsupervised}
+    What technique can extract meaningful information from unlabeled motion data to improve \gls{aar} performance, and to what extent does the performance improve with more data?
+\end{ResearchQuestion}
+
+To answer this question we propose the following hypothesis:
+
+\begin{hypothesis}
+\label{hyp:deep_unsupervised}
+    Unsupervised representation learning is a feature extraction method that can be trained with unlabeled data to extract features for orientation-independent \gls{aar} and the quality of the feature-extraction increases with the size of the unlabeled dataset.
+\end{hypothesis}
+
+
+In the following section, we present the contributions of this dissertation in answer to the research questions that were posed here.
+
+
+
+
+
+
+
+
+

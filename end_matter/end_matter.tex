@@ -1,0 +1,32 @@
+
+\ifdraft
+%do nothing
+    %  \subimport{./}{appendix}
+\else
+    \subimport{./}{appendix}
+    \setglossarystyle{listgroup}
+    % \glsaddall
+    \printglossary[type=\acronymtype,nonumberlist]
+\fi
+
+
+% \bibliographystyle{ACM-Reference-Format}
+% \bibliographystyle{unsrt}
+\bibliographystyle{habbrv}
+% \bibliographystyle{alpha}
+\renewcommand{\bibname}{Bibliography}
+\bibliography{manual,references,internet_links}
+
+\ifdraft
+%do nothing
+   
+\else
+    \subimport{./}{about_the_author}
+    \subimport{./}{list_of_publications}
+\fi
+
+\ifprintcover
+    \cleardoublepage
+    \thispagestyle{empty}
+    \includepdf[width=170mm]{./figures/back_cover.jpg}
+\fi
